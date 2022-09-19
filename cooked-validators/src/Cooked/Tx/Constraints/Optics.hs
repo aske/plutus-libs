@@ -19,6 +19,7 @@ import Optics.Core
 import qualified PlutusTx as Pl
 import qualified PlutusTx.Prelude as Pl
 import Type.Reflection
+import qualified Ledger.Ada as Ada
 
 -- A few remarks:
 
@@ -280,4 +281,4 @@ flattenValueI =
 nonAdaValue :: L.Value -> L.Value
 nonAdaValue = over flattenValueI (map $ \(ac, i) -> if ac == adaAssetClass then (ac, 0) else (ac, i))
   where
-    adaAssetClass = L.assetClass L.adaSymbol L.adaToken
+    adaAssetClass = L.assetClass Ada.adaSymbol Ada.adaToken
